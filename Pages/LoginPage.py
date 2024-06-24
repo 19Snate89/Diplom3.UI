@@ -57,7 +57,7 @@ class LoginPage(BasePage):
     def click_show_password_button(self):
         self.click_element(RemindPassword.SHOW_PASSWORD_BUTTON)
 
-
     @allure.step('Проверяем отображение скрытого пароля')
     def check_showing_password(self):
-        self.find_element(RemindPassword.SHOW_PASSWORD_BUTTON)
+        element = self.find_element(RemindPassword.SHOW_PASSWORD_BUTTON)
+        return element

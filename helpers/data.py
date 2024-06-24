@@ -1,3 +1,4 @@
+import random
 
 class UserData:
     USER_CREDS = {
@@ -14,3 +15,10 @@ class Urls:
     RESET_PASSWORD_PAGE = f'{MAIN_PAGE}reset-password'
     PROFILE_PAGE = f'{MAIN_PAGE}account/profile'
     HISTORY_PAGE = f'{MAIN_PAGE}account/order-history'
+
+
+class helper:
+    def random_choose(self, list_len):
+        number = random.randint(0, len(list_len)-1)
+        return list_len[number]
+

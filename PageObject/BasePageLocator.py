@@ -9,6 +9,11 @@ class StarBurgerMain:
     CHECK_TOPPINGS_BUTTON = (By.XPATH, "//span[text()='Начинки']/..")  # Проверка активированной кнопки "Начинки" перехода к разделу с булками на главной форме
     LOGO = (By.XPATH, "//div[contains(@class, 'logo')]")  # Лого на главной форме
     CONSTRUCTOR = (By.XPATH, "//p[text()='Конструктор']") # Кнопка "Конструктор" перехода к разделу с начинками на главной форме
+    ORDER_FEED = (By.XPATH, "//p[text()='Лента Заказов']") # Кнопка "Лента Заказов" перехода к разделу с начинками на главной форме
     ACCOUNT_ENTRY_BUTTON = (By.XPATH, "//button[text() = 'Войти в аккаунт']")  # Кнопка "Конструктор" перехода к разделу с начинками на главной форме
     INGREDIENTS_SECTION = (By.XPATH, "//div[contains(@class, 'BurgerIngredients_ingredients')]")
     PERSONAL_CABINET_BUTTON = (By.XPATH, "//a[@href='/account']")
+    HEADING_PAGE = (By.XPATH, "//h1[contains(@class, 'text')]")
+    INGREDIENT_NAME_LIST = (By.XPATH, "//a[contains(@class, 'BurgerIngredient')]/p")
+    MODAL_INGREDIENT = (By.XPATH, "//h2[text()='Детали ингредиента']")
+    MODAL_INGREDIENT_CLOSE_BUTTON = (By.XPATH, '//button[contains(@class, "Modal_modal__close")]')
