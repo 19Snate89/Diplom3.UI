@@ -1,6 +1,7 @@
 import pytest
 from selenium import webdriver
 
+URL = 'https://stellarburgers.nomoreparties.site'
 
 def browser_settings():
     options = webdriver.ChromeOptions()
@@ -10,6 +11,6 @@ def browser_settings():
 @pytest.fixture
 def driver():
     chrome = webdriver.Chrome(options=browser_settings())
-    chrome.get('https://stellarburgers.nomoreparties.site')
+    chrome.get(URL)
     yield chrome
     chrome.quit()
