@@ -44,7 +44,7 @@ class TestPersonalCabinet:
         lp.input_password()
         lp.click_login_button()
         lp.click_personal_cabinet_button()
-        lp.click_history_order__button()
+        lp.click_history_order_button()
         url = lp.get_url()
         assert url == Urls.HISTORY_PAGE
 

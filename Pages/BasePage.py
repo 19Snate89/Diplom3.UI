@@ -6,6 +6,7 @@ from PageObject.BasePageLocator import StarBurgerMain
 from helpers.data import Urls, helper
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 
 class BasePage:
 
@@ -39,8 +40,15 @@ class BasePage:
         try:
             elements = WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located(locator))
         except Exception:
-            raise Exception(f'Не удалось найти элементы с локатором {elements}')
+            raise Exception(f'Не удалось найти элемент с локатором {elements}')
         return elements
+
+    def invisible_element(self, locator: tuple):
+        try:
+            element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(locator))
+        except Exception:
+            raise Exception(f'Не удалось обнаружить скрытый элемент с локатором {element}')
+        return element
 
     def enter_text(self, locator: tuple, text: str):
         try:
@@ -111,14 +119,99 @@ class BasePage:
         return modal
 
     @allure.step('Проверяем закрытие модального окна ингредиента')
-    def check_modal_ingredient(self):
-        modal = self.find_element(StarBurgerMain.MODAL_INGREDIENT)
-        if modal:
-            return True
-        else:
-            return False
+    def check_invisibility_modal_ingredient(self):
+        modal = self.invisible_element(StarBurgerMain.MODAL_INGREDIENT)
+        return modal
+
 
     @allure.step('Нажимаем кнопку закрытия модального окна ингредиента')
     def click_close_modal_button(self):
         self.click_element(StarBurgerMain.MODAL_INGREDIENT_CLOSE_BUTTON)
+
+
+    def drag_and_drop_element(self, locator):
+        element = self.find_element(locator)
+        target = self.find_element(StarBurgerMain.BURGER_BASKET)
+        action_chains = ActionChains(self.driver)
+        action_chains.drag_and_drop(element, target).perform()
+
+    @allure.step('Перетаскиваем булку в корзину')
+    def drag_and_drop_bread(self):
+        element = self.find_element(StarBurgerMain.BREAD)
+        target = self.find_element(StarBurgerMain.BURGER_BASKET)
+        action_chains = ActionChains(self.driver)
+        action_chains.drag_and_drop(element, target).perform()
+
+    @allure.step('Проверяем счетчик ингредианта')
+    def get_count(self):
+        counter = self.get_text(StarBurgerMain.INGREDIENT_COUNTER)
+        return counter
+
+    @allure.step('Нажимаем кнопку "Оформить заказ"')
+    def click_order_button(self):
+        self.click_element(StarBurgerMain.ORDER_BUTTON)
+
+
+    @allure.step('Проверяем открытие модального окна оформленного заказа')
+    def check_modal_order(self):
+        modal = self.find_element(StarBurgerMain.MODAL_ORDER)
+        return modal
+
+    @allure.step('Проверяем открытие модального окна оформленного заказа')
+    def check_modal_details_of_order(self):
+        modal = self.find_element(StarBurgerMain.MODAL_ORDER_DETAILS)
+        return modal
+
+    @allure.step('Открываем ингредиент')
+    def open_random_order(self):
+        h = helper()
+        orders = self.wait_located_elements(StarBurgerMain.ORDER_HISTORY_LIST)
+        order = h.random_choose(orders)
+        text = order.text
+        order.click()
+        return text
+
+    @allure.step('Получаем число выполненных заказов за все время')
+    def get_number_all_orders(self):
+        number_order = self.get_text(StarBurgerMain.COUNT_ALL_ORDER_FEED)
+        return number_order
+
+    @allure.step('Получаем число выполненных заказов за сегодня')
+    def get_number_today_orders(self):
+        number_order = self.get_text(StarBurgerMain.COUNT_TODAY_ORDER_FEED)
+        return number_order
+
+    @allure.step('Получаем номер заказа, после оформления')
+    def get_number_create_order(self):
+        time.sleep(2)
+        number_order = self.get_text(StarBurgerMain.NUMBER_ORDER)
+        return number_order
+
+    @allure.step('Сверяем номер созданного заказа в таблице "В работе"')
+    def find_create_order_in_table_inwork(self, order_number):
+        time.sleep(3)
+        orders_in_work = self.wait_located_elements(StarBurgerMain.ORDERS_IN_WORK)
+        for order in orders_in_work:
+            text = order.text
+            if order_number in text:
+                return True
+
+    @allure.step('Получаем список номеров заказов в ленте заказов')
+    def get_list_numbers_orders(self):
+        list = []
+        elements = self.wait_located_elements(StarBurgerMain.NUMBERS_ORDERS_LIST)
+        for element in elements:
+            list.append(element.text)
+        return list
+
+    @allure.step('Получаем список номеров заказов в ленте заказов')
+    def check_users_order_in_orders(self, users_order, orders):
+        count = 0
+        for order in users_order:
+            if order in orders:
+                count += 1
+        if count >= 1:
+            return True
+
+
 

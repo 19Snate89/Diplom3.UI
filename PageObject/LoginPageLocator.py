@@ -12,6 +12,7 @@ class LoginPageLocator:
     ACCOUNT_TEXT = (By.XPATH, "//p[contains(@class, 'Account_text')]")  # Заголовок страницы формы личного кабинета
     LOGOUT_BUTTON = (By.XPATH, "//button[text() = 'Выход']")  # Кнопка "Войти" на форме личного кабинета
     ORDERS_HISTORY = (By.XPATH, "//a[@href='/account/order-history']") # Кнопка перехода в историю заказов пользователя
+    USER_NUMBERS_ORDERS_LIST = (By.XPATH, "//p[@class='text text_type_digits-default']") # Список заказов пользователя
 
 class RemindPassword:
 

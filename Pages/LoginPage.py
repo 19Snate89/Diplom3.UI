@@ -34,7 +34,7 @@ class LoginPage(BasePage):
         self.click_element(LoginPageLocator.LOGOUT_BUTTON)
 
     @allure.step('Нажимаем кнопку "История заказов"')
-    def click_history_order__button(self):
+    def click_history_order_button(self):
         self.click_element(LoginPageLocator.ORDERS_HISTORY)
 
     @allure.step('Нажимаем кнопку "Восстановления пароля"')
@@ -61,3 +61,11 @@ class LoginPage(BasePage):
     def check_showing_password(self):
         element = self.find_element(RemindPassword.SHOW_PASSWORD_BUTTON)
         return element
+
+    @allure.step('Получаем список номеров заказа пользователя')
+    def get_list_numbers_orders(self):
+        list = []
+        elements = self.wait_located_elements(LoginPageLocator.USER_NUMBERS_ORDERS_LIST)
+        for element in elements:
+            list.append(element.text)
+        return list
