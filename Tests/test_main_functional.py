@@ -38,7 +38,7 @@ class TestMainFunction:
         mp.click_close_modal_button()
         assert mp.check_invisibility_modal_ingredient()
 
-    @allure.title('Проверка закрытия всплывающего окна')
+    @allure.title('Проверка изменения счетчика выбранного ингредиента')
     def test_change_count(self, driver):
         mp = BasePage(driver)
         mp.open_main_page()
@@ -85,7 +85,7 @@ class TestOrderFeed:
         assert int(new_number_orders) == int(number_orders)+1
 
     @allure.title('Проверка увеличения счетчика выполненного за все сегодня, после оформления заказа')
-    def test_increase_count_all_orders(self, driver):
+    def test_increase_count_today_orders(self, driver):
         lp = LoginPage(driver)
         mp = BasePage(driver)
         lp.open_loging_page()
@@ -102,7 +102,7 @@ class TestOrderFeed:
         assert int(new_number_orders) == int(number_orders)+1
 
     @allure.title('Проверка отображения номера заказа в таблице "В работе:"')
-    def test_increase_count_all_orders(self, driver):
+    def test_create_order_in_work_list(self, driver):
         lp = LoginPage(driver)
         mp = BasePage(driver)
         lp.open_loging_page()
@@ -117,7 +117,7 @@ class TestOrderFeed:
         assert mp.find_create_order_in_table_inwork(number_order)
 
     @allure.title('Проверка отображения заказов пользователя в ленте заказов')
-    def test_increase_count_all_orders(self, driver):
+    def test_user_orders_in_orders(self, driver):
         lp = LoginPage(driver)
         mp = BasePage(driver)
         lp.open_loging_page()

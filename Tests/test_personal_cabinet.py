@@ -36,8 +36,8 @@ class TestPersonalCabinet:
         url = lp.get_url()
         assert url == Urls.LOGIN_PAGE
 
-    @allure.title('Проверка выхода из личного кабинета')
-    def test_logout(self, driver):
+    @allure.title('Проверка перехода на страницу "История заказов"')
+    def test_open_user_history_orders(self, driver):
         lp = LoginPage(driver)
         lp.open_loging_page()
         lp.input_email()
