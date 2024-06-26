@@ -2,7 +2,7 @@ import time
 
 import allure
 from selenium import webdriver
-from PageObject.BasePageLocator import StarBurgerMain
+from Locators.BasePageLocator import StarBurgerMain
 from helpers.data import Urls, helper
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC

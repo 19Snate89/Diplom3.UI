@@ -2,7 +2,7 @@ import allure
 from selenium import webdriver
 from helpers.data import UserData, Urls
 from Pages.BasePage import BasePage
-from PageObject.LoginPageLocator import LoginPageLocator, RemindPassword
+from Locators.LoginPageLocator import LoginPageLocator, RemindPassword
 
 
 
