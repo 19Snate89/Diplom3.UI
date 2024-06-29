@@ -26,7 +26,7 @@ class StarBurgerMain:
     ORDER_HISTORY_LIST = (By.XPATH, "//li[contains(@class, 'OrderHistory_listItem')]")
     MODAL_ORDER_DETAILS = (By.XPATH, "//div[contains(@class, 'Modal_orderBox')]")
     COUNT_ALL_ORDER_FEED = (By.XPATH, "//div[@class='undefined mb-15']/p[contains(@class, 'OrderFeed_number')]")
-    COUNT_TODAY_ORDER_FEED = (By.XPATH, "//div[@class='OrderFeed_ordersData__1L6Iv']/div[last()]/p[last()]")
+    COUNT_TODAY_ORDER_FEED = (By.XPATH, "//div[contains(@class, 'OrderFeed_ordersData')]/div[last()]/p[last()]")
     NUMBER_ORDER = (By.XPATH, '//h2[contains(@class, "Modal_modal__title")]')
     ORDERS_IN_WORK = (By.XPATH, '//ul[contains(@class, "OrderFeed_orderListReady")]/li')
     NUMBERS_ORDERS_LIST = (By.XPATH, "//p[@class='text text_type_digits-default']")  # Список заказов пользователя

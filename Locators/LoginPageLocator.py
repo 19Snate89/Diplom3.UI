@@ -14,6 +14,12 @@ class LoginPageLocator:
     ORDERS_HISTORY = (By.XPATH, "//a[@href='/account/order-history']") # Кнопка перехода в историю заказов пользователя
     USER_NUMBERS_ORDERS_LIST = (By.XPATH, "//p[@class='text text_type_digits-default']") # Список заказов пользователя
 
+
+class PersonalCabinetLocators:
+    NAME_FIELD = (By.XPATH, "//label[text()='Имя']/../input")  # Поле "Имя" на форме входа
+    EMAIL_FIELD = (By.XPATH, "//label[text()='Логин']/../input")  # Поле "Email" на форме входа
+
+
 class RemindPassword:
 
     REMIND_TITLE = (By.XPATH, "//div[contains(@class, 'Auth_login')]/h2") # Заголовок страницы формы восстановления пароля

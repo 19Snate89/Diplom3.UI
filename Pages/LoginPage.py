@@ -2,7 +2,7 @@ import allure
 from selenium import webdriver
 from helpers.data import UserData, Urls
 from Pages.BasePage import BasePage
-from Locators.LoginPageLocator import LoginPageLocator, RemindPassword
+from Locators.LoginPageLocator import LoginPageLocator, RemindPassword, PersonalCabinetLocators
 
 
 
@@ -69,3 +69,16 @@ class LoginPage(BasePage):
         for element in elements:
             list.append(element.text)
         return list
+
+    @allure.step('Проверяем отображение полей на странице входа')
+    def check_loging_field(self):
+        title = self.find_element(LoginPageLocator.LOGIN_TITLE).text
+        email = self.find_element(LoginPageLocator.EMAIL_FIELD)
+        password = self.find_element(LoginPageLocator.PASS_FIELD)
+        return title, email, password
+
+    @allure.step('Проверяем значения полей пользователя при входе в личный кабинет')
+    def check_personal_field(self):
+        name = self.find_element(PersonalCabinetLocators.NAME_FIELD).get_attribute('value')
+        email = self.find_element(PersonalCabinetLocators.EMAIL_FIELD).get_attribute('value')
+        return name, email

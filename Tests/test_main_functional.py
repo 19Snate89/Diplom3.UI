@@ -1,6 +1,6 @@
 from Pages.BasePage import BasePage
 from Pages.LoginPage import LoginPage
-from helpers.data import Urls
+from helpers.data import Urls, TitleTexts
 import allure
 
 class TestMainFunction:
@@ -12,7 +12,7 @@ class TestMainFunction:
         mp.click_order_feed_button()
         url = mp.get_url()
         assert url == Urls.ORDERS_PAGE
-        assert mp.check_heading_page() == 'Лента заказов'
+        assert mp.check_heading_page() == TitleTexts.ORDERS_FEED_TITLE
 
     @allure.title('Проверка перехода по кнопке "Конструктор"')
     def test_click_constructor(self, driver):
@@ -21,7 +21,7 @@ class TestMainFunction:
         mp.click_constructor_button()
         url = mp.get_url()
         assert url == Urls.MAIN_PAGE
-        assert mp.check_heading_page() == 'Соберите бургер'
+        assert mp.check_heading_page() == TitleTexts.CONSTRUCTOR_TITLE
 
     @allure.title('Проверка всплывающего окна с деталями при нажатии на ингредиент')
     def test_modal_after_click_ingredient(self, driver):

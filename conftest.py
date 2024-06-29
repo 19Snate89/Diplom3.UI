@@ -24,4 +24,3 @@ def driver(request):
     browser.get(Urls.MAIN_PAGE)
     yield browser
     browser.quit()
-

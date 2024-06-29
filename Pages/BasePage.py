@@ -167,9 +167,8 @@ class BasePage:
         h = helper()
         orders = self.wait_located_elements(StarBurgerMain.ORDER_HISTORY_LIST)
         order = h.random_choose(orders)
-        text = order.text
         order.click()
-        return text
+        return order.text
 
     @allure.step('Получаем число выполненных заказов за все время')
     def get_number_all_orders(self):
@@ -192,8 +191,7 @@ class BasePage:
         time.sleep(3)
         orders_in_work = self.wait_located_elements(StarBurgerMain.ORDERS_IN_WORK)
         for order in orders_in_work:
-            text = order.text
-            if order_number in text:
+            if order_number in order.text:
                 return True
 
     @allure.step('Получаем список номеров заказов в ленте заказов')
