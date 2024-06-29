@@ -21,6 +21,7 @@ class TitleTexts:
     LOGIN_TITLE = "Вход"
     ORDERS_FEED_TITLE = "Лента заказов"
     CONSTRUCTOR_TITLE = "Соберите бургер"
+    REMIND_TITLE = "Восстановление пароля"
 
 
 class helper:

@@ -1,6 +1,8 @@
 import pytest
 from selenium import webdriver
 from helpers.data import Urls
+from Pages.LoginPage import LoginPage
+from Pages.BasePage import BasePage
 
 URL = 'https://stellarburgers.nomoreparties.site'
 
@@ -24,3 +26,11 @@ def driver(request):
     browser.get(Urls.MAIN_PAGE)
     yield browser
     browser.quit()
+
+@pytest.fixture()
+def login_page(driver):
+    return LoginPage(driver)
+
+@pytest.fixture()
+def base_page(driver):
+    return BasePage(driver)

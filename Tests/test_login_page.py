@@ -1,4 +1,3 @@
-from Pages.LoginPage import LoginPage
 from helpers.data import Urls, TitleTexts, UserData
 import allure
 
@@ -6,8 +5,8 @@ import allure
 class TestPersonalCabinet:
 
     @allure.title('Проверка захода в личный кабинет без авторизации')
-    def test_personal_cabinet_page_without_authorisation(self, driver):
-        lp = LoginPage(driver)
+    def test_personal_cabinet_page_without_authorisation(self, login_page):
+        lp = login_page
         lp.open_main_page()
         lp.click_personal_cabinet_button()
         title, email, password = lp.check_loging_field()
@@ -17,8 +16,8 @@ class TestPersonalCabinet:
         assert email, password
 
     @allure.title('Проверка захода в личный кабинет после авторизации')
-    def test_personal_cabinet_page_with_authorisation(self, driver):
-        lp = LoginPage(driver)
+    def test_personal_cabinet_page_with_authorisation(self, login_page):
+        lp = login_page
         lp.open_loging_page()
         lp.input_email()
         lp.input_password()
@@ -31,8 +30,8 @@ class TestPersonalCabinet:
 
 
     @allure.title('Проверка выхода из личного кабинета')
-    def test_logout(self, driver):
-        lp = LoginPage(driver)
+    def test_logout(self, login_page):
+        lp = login_page
         lp.open_loging_page()
         lp.input_email()
         lp.input_password()
@@ -46,8 +45,8 @@ class TestPersonalCabinet:
         assert email, password
 
     @allure.title('Проверка перехода на страницу "История заказов"')
-    def test_open_user_history_orders(self, driver):
-        lp = LoginPage(driver)
+    def test_open_user_history_orders(self, login_page):
+        lp = login_page
         lp.open_loging_page()
         lp.input_email()
         lp.input_password()
@@ -56,6 +55,8 @@ class TestPersonalCabinet:
         lp.click_history_order_button()
         url = lp.get_url()
         assert url == Urls.HISTORY_PAGE
+        assert lp.check_order_list()
+
 
 
 

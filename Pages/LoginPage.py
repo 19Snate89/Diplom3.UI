@@ -82,3 +82,23 @@ class LoginPage(BasePage):
         name = self.find_element(PersonalCabinetLocators.NAME_FIELD).get_attribute('value')
         email = self.find_element(PersonalCabinetLocators.EMAIL_FIELD).get_attribute('value')
         return name, email
+
+    @allure.step('Проверяем наличие списка заказов')
+    def check_order_list(self):
+        order = self.find_element(PersonalCabinetLocators.ORDERS_LIST)
+        return order
+
+    @allure.step('Проверяем поля и титул формы восстановления')
+    def check_remind_password_fields(self):
+        title = self.get_text(RemindPassword.REMIND_TITLE)
+        email = self.find_element(RemindPassword.EMAIL_FIELD)
+        button = self.find_element(RemindPassword.REMIND_BUTTON)
+        return title, email, button
+
+    @allure.step('Проверяем поля и титул формы отправки кода')
+    def check_remind_code(self):
+        title = self.get_text(RemindPassword.REMIND_TITLE)
+        password = self.find_element(RemindPassword.PASSWORD_FIELD)
+        code = self.find_element(RemindPassword.CODE_FIELD)
+        button = self.find_element(RemindPassword.SAVE_BUTTON)
+        return title, password, code, button

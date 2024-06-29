@@ -18,6 +18,7 @@ class LoginPageLocator:
 class PersonalCabinetLocators:
     NAME_FIELD = (By.XPATH, "//label[text()='Имя']/../input")  # Поле "Имя" на форме входа
     EMAIL_FIELD = (By.XPATH, "//label[text()='Логин']/../input")  # Поле "Email" на форме входа
+    ORDERS_LIST = (By.XPATH, "//div[contains(@class, 'Account_contentBox')]") # Список заказов
 
 
 class RemindPassword:
@@ -26,5 +27,7 @@ class RemindPassword:
     REMIND_BUTTON = (By.XPATH, "//button[text() = 'Восстановить']") # Кнопка "Восстановить"
     EMAIL_FIELD = (By.XPATH, "//input[@name='name']")  # Поле "Email" на форме восстановления
     SHOW_PASSWORD = (By.XPATH, '//div[@class="input pr-6 pl-6 input_type_text input_size_default input_status_active"]')
-    PASSWORD_FIELD = (By.XPATH, "//input[@type='password']")  # Поле "Email" на форме входа
+    PASSWORD_FIELD = (By.XPATH, "//input[@type='password']")  # Поле "Пароль" на форме входа
+    CODE_FIELD = (By.XPATH, "//input[@name='name']")  # Поле "Код из письма" на форме входа
     SHOW_PASSWORD_BUTTON = (By.XPATH, "//div[@class='input__icon input__icon-action']")  # Кнопка скрыть/открыть пароль
+    SAVE_BUTTON = (By.XPATH, "//button[text() = 'Сохранить']")
